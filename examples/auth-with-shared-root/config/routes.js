@@ -16,19 +16,19 @@ function redirectToDashboard(nextState, replace) {
 }
 
 export default {
-  component: require('../components/App'),
+  component: require('../components/App').default,
   childRoutes: [
     { path: '/logout',
       getComponent: (nextState, cb) => {
         require.ensure([], (require) => {
-          cb(null, require('../components/Logout'))
+          cb(null, require('../components/Logout').default)
         })
       }
     },
     { path: '/about',
       getComponent: (nextState, cb) => {
         require.ensure([], (require) => {
-          cb(null, require('../components/About'))
+          cb(null, require('../components/About').default)
         })
       }
     },
@@ -40,7 +40,7 @@ export default {
         { path: '/login',
           getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-              cb(null, require('../components/Login'))
+              cb(null, require('../components/Login').default)
             })
           }
         }
@@ -54,7 +54,7 @@ export default {
         { path: '/user/:id',
           getComponent: (nextState, cb) => {
             require.ensure([], (require) => {
-              cb(null, require('../components/User'))
+              cb(null, require('../components/User').default)
             })
           }
         }
@@ -68,11 +68,11 @@ export default {
         // Dynamically load the correct component
         if (auth.loggedIn()) {
           return require.ensure([], (require) => {
-            cb(null, require('../components/Dashboard'))
+            cb(null, require('../components/Dashboard').default)
           })
         }
         return require.ensure([], (require) => {
-          cb(null, require('../components/Landing'))
+          cb(null, require('../components/Landing').default)
         })
       },
       indexRoute: {
@@ -80,7 +80,7 @@ export default {
           // Only load if we're logged in
           if (auth.loggedIn()) {
             return require.ensure([], (require) => {
-              cb(null, require('../components/PageOne'))
+              cb(null, require('../components/PageOne').default)
             })
           }
           return cb()
@@ -93,7 +93,7 @@ export default {
             { path: '/page2',
               getComponent: (nextState, cb) => {
                 require.ensure([], (require) => {
-                  cb(null, require('../components/PageTwo'))
+                  cb(null, require('../components/PageTwo').default)
                 })
               }
             }
